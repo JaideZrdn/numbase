@@ -6,8 +6,11 @@ class Numero:
         self._valida()  # Verifica se o número está na base correta logo que o objeto é criado
 
     def __repr__(self):  # Método que retorna a representação do objeto
-        return ("Número: " + str(self.valor) + " Base: " + str(self.base) +
-                "\nO número na base 10 é " + str(self.b10))
+        if self.base != 10:
+            return ("Número: " + str(self.valor) + " Base: " + str(self.base) +
+                    "\nO número na base 10 é " + str(self.b10))
+        else:
+            return "Número: " + str(self.valor) + " Base: " + str(self.base)
 
     def mudabase(self, basedestino):  # Método que converte o número para a base desejada
         if basedestino < 2 or basedestino > 35:  # Verifica se a base é válida
@@ -21,6 +24,10 @@ class Numero:
                 raise ValueError('O número digitado não está compreendido  na base escolhida')
 
     def _convertebase(self, basedestino):  # Método suporte para a conversão
+        # Método caso as bases sejam iguais
+        if self.base == basedestino:
+            return self.valor
+        # Método caso as bases não tenham relação logaritmina perfeita
         quociente = self.b10 // basedestino
         resto = self.b10 % basedestino
         if quociente == 0:
