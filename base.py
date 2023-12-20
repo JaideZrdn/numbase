@@ -2,7 +2,6 @@ class Numero:
     def __init__(self, valor, base):
         self.base = base
         self.valor = valor.upper()
-        self.b10 = self._base10()
         self._valida()                            # Verifica se o número está na base correta logo que o objeto é criado
 
     def __repr__(self):                                                   # Método que retorna a representação do objeto
@@ -41,7 +40,8 @@ class Numero:
             resto = chr(resto + ord('A') - 10)
         return nova._convertebase(basedestino) + str(resto)     # Concatena o resto com o resultado da chamada recursiva
 
-    def _base10(self):                                                      # Método que transforma o número pra base 10
+    @property
+    def b10(self):                                                      # Método que transforma o número pra base 10
         numerob10 = 0
         for i in range(len(self.valor)):
             digito = self._convertedigitos(i)
